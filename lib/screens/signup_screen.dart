@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instamoon/utils/colors.dart';
 import 'package:instamoon/widgets/text_field_input.dart';
+import 'package:instamoon/resources/auth_methods.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -55,7 +56,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 14,
               ),
               TextFieldInput(
@@ -81,20 +82,29 @@ class _SignupScreenState extends State<SignupScreen> {
               const SizedBox(
                 height: 20,
               ),
-              Container(
-                width: double.infinity,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                decoration: const ShapeDecoration(
-                  color: Color.fromARGB(255, 214, 106, 98),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(4.0),
+              InkWell(
+                onTap: () async {
+                  String response = await AuthMethods().signUpUser(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                      username: _usernameController.text);
+                  print(response);
+                },
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const ShapeDecoration(
+                    color: Color.fromARGB(255, 214, 106, 98),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(4.0),
+                      ),
                     ),
                   ),
-                ),
-                child: const Text(
-                  'Sign up',
+                  child: const Text(
+                    'Sign up',
+                  ),
                 ),
               ),
               const SizedBox(
@@ -118,8 +128,13 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
+                  InkWell(
+                    // onTap: () async {
+                    //   String response = await AuthMethods().signUpUser(
+                    //       email: _emailController.text,
+                    //       password: _passwordController.text,
+                    //       username: _usernameController.text);
+                    // },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                         vertical: 8,
