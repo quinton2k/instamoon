@@ -7,15 +7,17 @@ import 'package:instamoon/responsive/web_screen_layout.dart';
 import 'package:instamoon/screens/login_screen.dart';
 import 'package:instamoon/screens/signup_screen.dart';
 import 'package:instamoon/utils/colors.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
+  await dotenv.load(fileName: "dotenv");
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     await Firebase.initializeApp(
-      options: const FirebaseOptions(
-        apiKey: 'AIzaSyC8rlXCl6Sj2t2cja3YaoRnS2DZfRtwltA',
-        appId: '1:886333418322:web:6324229203339fcd41e88b',
-        messagingSenderId: "886333418322",
+      options: FirebaseOptions(
+        apiKey: dotenv.env['apiKey'].toString(),
+        appId: dotenv.env['appId'].toString(),
+        messagingSenderId: dotenv.env['messagingSenderId'].toString(),
         projectId: "instamoon-16409",
         storageBucket: "instamoon-16409.appspot.com",
       ),
