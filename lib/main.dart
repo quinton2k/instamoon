@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         title: 'Instamoon',
         // home: ResponsiveLayout(
         //   mobileScreenLayout: MobileScreenLayout(),
-        //   webScreenLayout: WebScreenLayout(),
+        //   webScreenLayout: WebScreenLayout(),`
         // ),
         home: LoginScreen(),
       );
